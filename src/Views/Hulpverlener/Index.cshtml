@@ -1,0 +1,79 @@
+@model IEnumerable<Hulpverlener>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1>Orthopedagogen</h1>
+
+    <div class="row">
+        <div class="d-flex justify-content-end col-sm-12">
+            <form class="d-flex justify-content-end">
+                <div class="input-group mb-3">
+                    <label for="ZoekHulpverlener" id="zoekLabel">Zoek op naam</label>
+                    <input class="form-control" type="text" id="ZoekHulpverlener" name="zoek">
+                    <div class="input-group-append">
+                        <button id="zoekButton" type="submit" class="btn btn-outline-primary">Zoek!</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                    @if((string)ViewData["Sorteer"] == "naam_aflopend"){
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="naam_oplopend">↑</a>
+                    }else if((string)ViewData["Sorteer"] == "naam_oplopend"){
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="naam_aflopend">↓</a>
+                    }else
+                    {
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="naam_oplopend">↑</a>
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="naam_aflopend">↓</a>
+                    }
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialisatie)
+                    @if((string)ViewData["Sorteer"] == "specialisatie_aflopend"){
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="specialisatie_oplopend">↑</a>
+                    }else if((string)ViewData["Sorteer"] == "specialisatie_oplopend"){
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="specialisatie_aflopend">↓</a>
+                    }else
+                    {
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="specialisatie_oplopend">↑</a>
+                        <a class="sorteer" asp-controller="Hulpverlener" asp-action="Index" asp-route-sorteer="specialisatie_aflopend">↓</a>
+                    }
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialisatie)
+                    </td>
+                    <td>
+                        <img alt="hulpverlenerFoto" id="hulpverlenerFoto" src="~/img/@Html.DisplayFor(modelItem => item.Foto)">
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@if((bool)ViewData["heeftVolgende"] ){
+    <a asp-controller="Hulpverlener" asp-action="Index" asp-route-pagina='@((int)ViewData["Pagina"]+1)'>Volgende</a>
+}
+@if((bool)ViewData["heeftVorige"] ){
+    <a asp-controller="Hulpverlener" asp-action="Index" asp-route-pagina='@((int)ViewData["Pagina"]-1)'>Vorige</a>
+}

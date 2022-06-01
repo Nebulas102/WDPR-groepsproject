@@ -1,0 +1,77 @@
+@model Hulpverlener
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-3 "></div>
+    <div class="col-md-6 Border">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+        <h4 class="text-center">Hulpverlener</h4>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adres" class="control-label"></label>
+                <input asp-for="Adres" class="form-control" />
+                <span asp-validation-for="Adres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialisatie" class="control-label"></label>
+                <input asp-for="Specialisatie" class="form-control" />
+                <span asp-validation-for="Specialisatie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Intro" class="control-label"></label>
+                <input asp-for="Intro" class="form-control" />
+                <span asp-validation-for="Intro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Study" class="control-label"></label>
+                <input asp-for="Study" class="form-control" />
+                <span asp-validation-for="Study" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OverJou" class="control-label"></label>
+                <input asp-for="OverJou" class="form-control" />
+                <span asp-validation-for="OverJou" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Behandeling" class="control-label"></label>
+                <input asp-for="Behandeling" class="form-control" />
+                <span asp-validation-for="Behandeling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Foto" class="control-label"></label>
+                <input asp-for="Foto" class="form-control" />
+                <span asp-validation-for="Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label asp-for="VestigingId"></label>
+                    <select asp-for="VestigingId" class="form-control">
+                        @if (ViewData["Vestigingen"] != null)
+                        {
+                            @foreach (var vestiging in (List<Vestiging>) ViewData["Vestigingen"])
+                            {
+                                <option asp-for="VestigingId" value="@vestiging.Id">@vestiging.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            <div class="form-group d-flex justify-content-center">
+                <button aria-label="Toevoegen knop" type="submit" class="btn">Toevoegen</button>
+            </div>
+        </form>
+        <a class="d-flex justify-content-end" asp-action="Index">Terug naar de lijst</a>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,38 @@
+<ul class="navbar-nav flex-grow-1 d-flex">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">over ons</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Hulpverlener" asp-action="Clienten">clienten</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Hulpverlener" asp-action="Inbox">inbox</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Chat" asp-action="SelfHelpGroups">zelfhulpgroepen</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            dashboards
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" asp-area="" asp-controller="Report" asp-action="Index">reports</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Chat"
+                asp-action="SelfHelpGroupsDetermine">zelfhulpgroep aanvragen</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Chat" asp-action="BlockUsers">(de)blokkeer
+                gebruikers</a>
+            <a class="dropdown-item" asp-area="" asp-controller="ChatFrequency" asp-action="FrequencyRequests">Behandel
+                Chat Frequencies aanvragen</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-area="" asp-controller="Melding" asp-action="Index">meldingen</a>
+            <a class="dropdown-item" asp-area="" asp-controller="SelfHelpGroup" asp-action="Index">zelfhulpgroep</a>
+            <a class="dropdown-item" asp-area="" asp-controller="Chat" asp-action="Index">chat</a>
+            <a class="dropdown-item" asp-area="" asp-controller="ApplicationUserChat" asp-action="Index">gebruiker &
+                chat</a>
+        </div>
+    </li>
+</ul>

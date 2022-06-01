@@ -1,0 +1,62 @@
+@model SpecificApiClientHulpverlenerViewModel
+@{
+    var a = Model.specificApiClient;
+}
+<div class="container">
+    <h1>Clienten</h1>
+
+@* <div class="row">
+    <div class="d-flex justify-content-end col-sm-12">
+        <form class="d-flex justify-content-end">
+            <div class="input-group mb-3">
+                <label for="ZoekClient" id="zoekLabel">Zoeken op naam</label>
+                <input class="form-control" type="text" id="ZoekClient" name="zoek">
+                <div class="input-group-append">
+                    <button id="zoekButton" type="submit" class="btn btn-outline-primary">Zoek!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> *@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Client naam
+                </th>
+                <th>
+                    Geboortedatum
+                </th>
+                <th>
+                    IBAN
+                </th>
+                <th>
+                    BSN
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.clienten) {
+                <tr>
+                    @{
+                        var client = a.Where(s=>s.clientid==item.ClientId).FirstOrDefault();
+                    }
+                    <td>
+                        @client.volledigenaam
+                    </td>
+                    <td>
+                        @client.gebdatum
+                    </td>
+                    <td>
+                        @client.IBAN
+                    </td>
+                    <td>
+                        @client.BSN
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

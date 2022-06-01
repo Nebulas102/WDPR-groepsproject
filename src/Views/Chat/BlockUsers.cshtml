@@ -1,0 +1,61 @@
+@model IEnumerable<ApplicationUserChat>
+@{
+    ViewData["Title"] = "Blokkeer/Deblokkeer Gebruikers";
+}
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            @foreach (var applicationUserChat in Model)
+            {
+                <div class="col-12 selfhelpgroup-item border border-primary rounded py-2 mb-3">
+                    <div class="selfhelpgroup-header">
+                        @if (applicationUserChat.Chat.SelfHelpGroup != null)
+                        {
+                            <h2>@applicationUserChat.Chat.SelfHelpGroup.Name</h2>
+                        }
+                        else
+                        {
+                            <h2>@applicationUserChat.Chat.Name</h2>
+                        }
+                        <h4>@applicationUserChat.ApplicationUser.UserName</h4>
+                        <h5>@applicationUserChat.ApplicationUserChatStatus</h5>
+                        <i>@applicationUserChat.Chat.CreatedAt.Date.ToString("MM/dd/yyyy")</i>
+                    </div>
+                    <div class="selfhelpgroup-body">
+                        @if (applicationUserChat.Chat.SelfHelpGroup != null)
+                        {
+                            <p>@applicationUserChat.Chat.SelfHelpGroup.Description</p>
+                        }
+                        @if (applicationUserChat.ApplicationUserChatStatus == "active")
+                        {
+                            <form asp-action="BlockUser" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="userId" name="userId" value="@applicationUserChat.ApplicationUserId">
+                                <input type="hidden" id="chatId" name="chatId" value="@applicationUserChat.ChatId">
+                                <div class="form-group">
+                                    <input type="submit" value="Blokkeer" class="btn btn-danger" />
+                                </div>
+                            </form>
+                        }
+                        else if (applicationUserChat.ApplicationUserChatStatus == "blocked")
+                        {
+                            <form asp-action="UnBlockUser" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="userId" name="userId" value="@applicationUserChat.ApplicationUserId">
+                                <input type="hidden" id="chatId" name="chatId" value="@applicationUserChat.ChatId">
+                                <div class="form-group">
+                                    <input type="submit" value="Deblokkeer" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn geen gebruikers om te blokkeren of deblokkeren.</p>
+        }
+    </div>
+</div>

@@ -1,0 +1,114 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/css/login_register.css" />
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 Border">
+        <h1 class="text-center">Aanmelden</h1>
+        @if((string) ViewData["error"] == "Ouder")
+        {
+            <div class="alert alert-danger" role="alert">
+                Ouder email bestaat al!
+            </div>
+        }
+        @if((string) ViewData["error"] == "Client")
+        {
+            <div class="alert alert-danger" role="alert">
+                Client email bestaat al!
+            </div>
+        }
+        @if((string) ViewData["error"] == "Date")
+        {
+            <div class="alert alert-danger" role="alert">
+                Vul een andere datum in.
+            </div>
+        }
+        @if((string) ViewData["error"] == "UnderSixteen")
+        {
+            <div class="alert alert-danger" role="alert">
+                Onder de zestien moet een ouder zich ook aanmelden.
+            </div>
+        }
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" id="RegisterForm">
+            <hr />
+            <div class="form-group">
+                <label asp-for="clientInput.Email"></label>
+                <input asp-for="clientInput.Email" class="form-control" />
+                <span asp-validation-for="clientInput.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apiInput.FullName"></label>
+                <input asp-for="apiInput.FullName" class="form-control" />
+                <span asp-validation-for="apiInput.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apiInput.BSN"></label>
+                <input type="number" asp-for="apiInput.BSN" class="form-control" />
+                <span asp-validation-for="apiInput.BSN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apiInput.Iban"></label>
+                <input asp-for="apiInput.Iban" class="form-control" />
+                <span asp-validation-for="apiInput.Iban" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clientInput.Adres"></label>
+                <input asp-for="clientInput.Adres" class="form-control" />
+                <span asp-validation-for="clientInput.Adres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clientInput.Residence"></label>
+                <input asp-for="clientInput.Residence" class="form-control" />
+                <span asp-validation-for="clientInput.Residence" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apiInput.Birthdate"></label>
+                <input asp-for="apiInput.Birthdate" type="date" class="form-control"/>
+                <span asp-validation-for="apiInput.Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clientInput.HulpverlenerId"></label>
+                <select asp-for="clientInput.HulpverlenerId" class="form-control">
+                    @if (ViewData["hulpverleners"] != null)
+                    {
+                        @foreach (var hulpverlener in (List<Hulpverlener>) ViewData["hulpverleners"])
+                        {
+                            <option asp-for="client.HulpverlenerId" value="@hulpverlener.Id">@hulpverlener.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="Ouderform">
+                <h2 class="text-center">Ouder/Verzorger</h2>
+                <h6 class="text-center">Ouder/Verzorger moet akkoord gaan onder de 16</h6>
+                <div class="form-group">
+                    <label asp-for="ouderInput.Email"></label>
+                    <input asp-for="ouderInput.Email" class="form-control" />
+                    <span asp-validation-for="ouderInput.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ouderInput.FullName"></label>
+                    <input asp-for="ouderInput.FullName" class="form-control"/>
+                    <span asp-validation-for="ouderInput.FullName" class="text-danger"></span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" asp-for="ouderInput.Agree" class="form-control"/>
+                    <label asp-for="ouderInput.Agree"></label>
+                </div>
+                <br>
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn">Aanmelden</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

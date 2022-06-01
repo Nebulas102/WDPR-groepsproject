@@ -1,0 +1,38 @@
+@model List<HulpverlenerClientRelationViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+<h1>Hulpverleners en clienten</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Hulpverlener
+            </th>
+            <th>
+                Clienten
+            </th>
+            <th>
+                Specialisatie Hulpverlener
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.naamHulpverlener)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.naamClient)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.specialisatieHulpverlener)
+            </td>
+        </tr>
+}
+</div>
+    </tbody>
+</table>

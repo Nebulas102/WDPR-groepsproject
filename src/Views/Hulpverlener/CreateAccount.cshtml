@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Maak Account voor hulpverlener";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 Border">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+        <h4 class="text-center">Hulpverlener</h4>
+        <form asp-action="CreateAccount" method="post">
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input for="Email" type="email" id="Email" name="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Wachtwoord" class="control-label">Wachtwoord</label>
+                <input for="Wachtwoord" type="password" id="Wachtwoord" name="Wachtwoord" class="form-control" />
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <button aria-label="Toevoegen knop" type="submit" class="btn">Toevoegen</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

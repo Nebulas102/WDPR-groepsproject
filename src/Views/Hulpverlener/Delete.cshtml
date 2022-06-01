@@ -1,0 +1,69 @@
+@model Hulpverlener
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Verwijderen</h1>
+
+<h3>Weet je zeker dat je het wil verwijderen?</h3>
+<div>
+    <h4>Hulpverlener</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Specialisatie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Specialisatie)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Intro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Intro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Study)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Study)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OverJou)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OverJou)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Behandeling)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Behandeling)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar de lijst</a>
+    </form>
+</div>

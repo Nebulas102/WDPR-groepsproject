@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Identity
+@model FrequencyViewModel
+
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col-12">
+                <h4>
+                    Chat frequentie: @Model.ApplicationUserChat.Chat.Name -
+                    @Model.ApplicationUserChat.ApplicationUser.UserName
+                </h4>
+            </div>
+            <div class="col-12">
+                <p><i>Ouder: @Model.ChatFrequency.Ouder.Account.UserName</i></p>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Bericht")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var message in Model.Messages)
+                    {
+
+                        <tr>
+                            <td>
+                                @message.Content
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Er zijn geen berichten voor deze frequentie.</p>
+        }
+    </div>
+</div>

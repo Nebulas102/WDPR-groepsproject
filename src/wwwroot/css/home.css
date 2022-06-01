@@ -1,0 +1,98 @@
+.bg-img {
+    /* The image used */
+    background-image: url("https://wijzeroverdebasisschool.nl/wp-content/uploads/2016/05/orthopedagoog-met-kind.jpg");
+    /* opacity: 0.7; */
+    /* Control the height of the image */
+    min-height: 450px;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  /* Add styles to the form container */
+  .imgcontainer {
+    opacity: 1 !important;
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 5%;
+    text-align: center;
+    /* height: 100%; */
+  }
+  .btn{
+    border-radius: 2rem !important;
+  }
+  .imgcontainer button{
+    margin-top: 10px;
+    width: 200px;
+    background-color: #AB504F;
+    color: white;
+    height: 100%;
+    max-height: 10%;
+  }
+  .imgcontainerleft {
+    opacity: 1 !important;
+    position: absolute;
+    left: 0;
+    bottom: 125px;
+    margin: 20px;
+    padding: 16px;
+    background-color: transparent;
+  }
+/*   
+  /* Full-width input fields */
+    input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  } */
+  
+  /* Set a style for the submit button */
+  .homebtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .homebtn:hover {
+    opacity: 1;
+  }
+  .formtext{
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .text1{
+      color: #AB504F;
+  }
+  .text2{
+      color: #FFFFFF;
+  }
+  .signup{
+    margin-top: 10px;
+    width: 200px;
+    background-color: #AB504F;
+    color: white;
+  }
+
+  @media only screen and (max-width: 1200px ){
+    .imgcontainerleft{
+      bottom: 25px;
+    }
+  }

@@ -1,0 +1,64 @@
+@model SpecificApiClientViewModel
+@{
+    var a = Model.specificApiClient;
+}
+<div class="container">
+<h1>Orthopedagogen</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Client Naam
+            </th>
+            <th>
+                Ouder Naam
+            </th>
+            <th>
+                Akkoord
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.aanmeldingen) {
+            <tr>
+                <td>
+                    @{
+                        var client = a.Where(s=>s.clientid==item.ClientId).FirstOrDefault();
+                        
+                    }
+                    @client.volledigenaam
+                </td>
+                <td>
+                    @if(item.Ouder!=null){
+                        @item.Ouder.FullName
+                    }
+                    else{
+                        <span>16 jaar of ouder</span>
+                    }
+                </td>
+                <td>
+                    @if(item.Ouder!=null){
+                        @if(item.Agree){
+                            <span>Ouder gaat akkoord</span>
+                        }
+                        else{
+                            <span>Ouder gaat niet akkoord</span>
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Hulpverlener" asp-action="AcceptAanmelding" asp-route-clientId="@item.ClientId">Aanmelden</a>
+                </td>
+                <td>
+                    <a asp-controller="Hulpverlener" asp-action="DenyAanmelding" asp-route-clientId="@item.ClientId">Afwijzen</a>
+                </td>
+            </tr>
+        }
+</div>
+    </tbody>
+</table>
+<script>
+    
+</script>

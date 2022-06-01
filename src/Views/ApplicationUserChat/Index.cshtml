@@ -1,0 +1,48 @@
+@model IEnumerable<ApplicationUserChat>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Chat Gebruikers</h1>
+
+<p>
+    <a asp-action="Create">Voeg gebruiker toe aan chat</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Gebruiker")
+            </th>
+            <th>
+                @Html.DisplayName("Chat Status")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ApplicationUser.Email + @item.ApplicationUser.UserName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUserChatStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chat.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { userId=item.ApplicationUserId, chatId=item.ChatId }) |
+                    @Html.ActionLink("Bekijk", "Details", new { userId=item.ApplicationUserId, chatId=item.ChatId }) |
+                    @Html.ActionLink("Verwijder", "Delete", new { userId=item.ApplicationUserId, chatId=item.ChatId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+    IList<string> role = new List<string>();
+    if (user != null)
+    {
+        role = await UserManager.GetRolesAsync(user);
+    }
+}
+<header>
+    <nav class="navbar navbar-expand-xl">
+        <div class="container">
+            <a style="display: contents;" asp-controller="Home" asp-action="Index">
+                <img class="navbar-brand logo-img" src="~/img/Logo.png" alt="Logo">
+            </a>
+            <button aria-label="Open navigatie menu" class="navbar-toggler navbar-light bg-light" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (role.Contains("Hulpverlener"))
+                    {
+                        <partial name="Partial/HeaderPartials/_HulpverlenerHeaderPartial"></partial>
+                    }
+                    else if (role.Contains("Ouder"))
+                    {
+                        <partial name="Partial/HeaderPartials/_OuderHeaderPartial"></partial>
+                    }
+                    else if (role.Contains("Moderator"))
+                    {
+                        <partial name="Partial/HeaderPartials/_ModeratorHeaderPartial"></partial>
+                    }
+                    else if (role.Contains("Client"))
+                    {
+                        <partial name="Partial/HeaderPartials/_ClientHeaderPartial"></partial>
+                    }
+                    else if (role.Contains("Admin"))
+                    {
+                        <partial name="Partial/HeaderPartials/_AdminHeaderPartial"></partial>
+                    }
+                }
+                else
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">over
+                                ons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Hulpverlener"
+                            asp-action="Index">orthopedagogen</a>
+                        </li>
+                    </ul>
+                }
+                <div class="form-inline my-2 my-xl-0 loginpartial">
+                    <partial name="Partial/_LoginPartial"></partial>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

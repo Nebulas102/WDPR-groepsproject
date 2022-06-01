@@ -1,0 +1,66 @@
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<ChatFrequency>
+
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            @foreach (var chatFrequency in Model)
+            {
+                <div class="col-12 selfhelpgroup-item border border-primary rounded py-2 mb-3">
+                    <div class="selfhelpgroup-header">
+                        <h2>@chatFrequency.Chat.Name</h2>
+                        <i>@chatFrequency.Chat.CreatedAt.Date.ToString("MM/dd/yyyy")</i>
+                    </div>
+                    <div class="selfhelpgroup-body">
+                        @if (chatFrequency.Status == "pending")
+                        {
+                            <form asp-action="AcceptFrequencyRequest" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="id" name="id" value="@chatFrequency.Id">
+                                <div class="form-group">
+                                    <input type="submit" value="Accepteer" class="btn btn-primary" />
+                                </div>
+                            </form>
+                            <form asp-action="DeclineFrequencyRequest" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="id" name="id" value="@chatFrequency.Id">
+                                <div class="form-group">
+                                    <input type="submit" value="Weiger" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                        else if (chatFrequency.Status == "declined")
+                        {
+                            <p>Chat frequentie was geweigert.</p>
+                            <form asp-action="AcceptFrequencyRequest" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="id" name="id" value="@chatFrequency.Id">
+                                <div class="form-group">
+                                    <input type="submit" value="Accepteer" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                        else if (chatFrequency.Status == "accepted")
+                        {
+                            <p>Bekijk chat frequentie:</p>
+                            @Html.ActionLink("Bekijk Frequentie", "Frequency", new { Id=chatFrequency.Id })
+                            <p>Chat frequentie was geaccepteerd.</p>
+                            <form asp-action="DeclineFrequencyRequest" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="id" name="id" value="@chatFrequency.Id">
+                                <div class="form-group">
+                                    <input type="submit" value="Weiger" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn geen Chat frequenties aanvragen.</p>
+        }
+    </div>
+</div>

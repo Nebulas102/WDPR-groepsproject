@@ -1,0 +1,77 @@
+@using Microsoft.AspNetCore.Identity
+@model SelfHelpGroupViewModel
+@{
+    var CurrentUser = ViewData["CurrentUser"] as IdentityUser;
+}
+<div class="container">
+    <form class="form-inline" asp-action="SelfHelpGroups" method="get">
+        <div class="form-group no-color">
+            <p>
+                Zoek bij naam: <input class="form-control" type="text" name="CurrentNameFilterString"
+                    value="@ViewData["CurrentNameFilter"]" />
+                @* Zoek bij Leeftijdsgroep: <input type="text" name="LeeftijdsgroepString"
+                    value="@ViewData["CurrentLeeftijdsgroepString"]" /> *@
+                <select class="form-control" name="CurrentLeeftijdsgroepString">
+                    @if ((bool)ViewData["CurrentLeeftijdsgroepString"] == true)
+                    {
+                        <option value="true" selected>Boven 16</option>
+                        <option value="false">Onder 16</option>
+                    }
+                    else
+                    {
+                        <option value="true">Boven 16</option>
+                        <option value="false" selected>Onder 16</option>
+                    }
+                </select>
+                <input type="submit" value="Zoek" class="btn btn-primary" />
+                <a asp-action="SelfHelpGroups" class="btn btn-primary">Reset Lijst</a>
+            </p>
+        </div>
+    </form>
+    <div class="row">
+        @if (Model.SelfHelpGroups != null)
+        {
+            foreach (var selfHelpGroup in Model.SelfHelpGroups)
+            {
+                <div class="col-12 selfhelpgroup-item border border-primary rounded py-2 mb-3">
+                    <div class="selfhelpgroup-header">
+                        <h2>@selfHelpGroup.Name</h2><i>@selfHelpGroup.Chat.CreatedAt.Date.ToString("MM/dd/yyyy")</i>
+                    </div>
+                    <div class="selfhelpgroup-body">
+                        <p>@selfHelpGroup.Description</p>
+                        @if (selfHelpGroup.Chat.ApplicationUserChats.Any(auc => auc.ApplicationUserChatStatus == "pending"))
+                        {
+                            <b>Wachten op antwoord</b>
+                        }
+                        else if (selfHelpGroup.Chat.ApplicationUserChats.Any(auc => auc.ApplicationUserChatStatus == "active"))
+                        {
+                            <b>Jij zit al in deze zelfhulpgroep.</b>
+                        }
+                        else if (selfHelpGroup.Chat.ApplicationUserChats.Any(auc => auc.ApplicationUserChatStatus == "blocked"))
+                        {
+                            <b>Jij bent geblokkeert in deze zelfhulpgroep.</b>
+                        }
+                        else if (selfHelpGroup.Chat.ApplicationUserChats.Any(auc => auc.ApplicationUserChatStatus ==
+                        "declined"))
+                        {
+                            <b>Jij bent geweigert in deze zelfhulpgroep.</b>
+                        }
+                        else
+                        {
+                            <form asp-action="SelfHelpGroups" method="post">
+                                <input type="hidden" id="chatId" name="chatId" value="@selfHelpGroup.ChatId">
+                                <div class="form-group">
+                                    <input type="submit" value="Verzoek Aanvragen" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn geen zelfhulpgroepen.</p>
+        }
+    </div>
+</div>

@@ -1,0 +1,43 @@
+@model IEnumerable<ApplicationUserChat>
+@{
+
+}
+<div class="container">
+    <div class="row">
+        @if (Model != null)
+        {
+            @foreach (var applicationUserChat in Model)
+            {
+                <div class="col-12 selfhelpgroup-item border border-primary rounded py-2 mb-3">
+                    <div class="selfhelpgroup-header">
+                        <h2>@applicationUserChat.Chat.SelfHelpGroup.Name</h2>
+                        <i>@applicationUserChat.Chat.CreatedAt.Date.ToString("MM/dd/yyyy")</i>
+                    </div>
+                    <div class="selfhelpgroup-body">
+                        <p>@applicationUserChat.Chat.SelfHelpGroup.Description</p>
+                        <form asp-action="SelfHelpGroupAccept" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" id="selfHelpGroupId" name="selfHelpGroupId"
+                        value="@applicationUserChat.Chat.SelfHelpGroup.Id">
+                            <div class="form-group">
+                                <input type="submit" value="Accepteer" class="btn btn-primary" />
+                            </div>
+                        </form>
+                        <form asp-action="SelfHelpGroupDecline" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" id="selfHelpGroupId" name="selfHelpGroupId"
+                        value="@applicationUserChat.Chat.SelfHelpGroup.Id">
+                            <div class="form-group">
+                                <input type="submit" value="Weigeren" class="btn btn-danger" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn geen zelfhulpgroepen.</p>
+        }
+    </div>
+</div>

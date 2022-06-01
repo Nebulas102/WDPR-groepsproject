@@ -1,0 +1,58 @@
+@model IEnumerable<Message>
+
+@{
+    ViewData["Title"] = "Berichten Reports";
+}
+
+<h1>Berichten Reports</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Report Content")
+            </th>
+            <th>
+                @Html.DisplayName("Report Behandeld")
+            </th>
+            <th>
+                @Html.DisplayName("Report Behandeld Door")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.Reports.Count != 0)
+            {
+                @foreach (var report in item.Reports)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => report.Content)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => report.isHandled)
+                        </td>
+                        <td>
+                            @if (report.Handler != null)
+                            {
+                                @Html.DisplayFor(modelItem => report.Handler.UserName)
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Geen behandelaar voor deze report")
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="HandleReport" asp-route-chatId="@item.ChatId" asp-route-messageId="@item.Id"
+                    asp-route-reportId="@report.Id">Behandel
+                                Report</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

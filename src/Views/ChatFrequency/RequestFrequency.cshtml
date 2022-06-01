@@ -1,0 +1,60 @@
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<ApplicationUserChat>
+@{
+    var ouder = ViewData["ouder"] as IdentityUser;
+    var client = ViewData["client"] as Client;
+}
+<div class="container">
+    <div class="row">
+        @if (Model.Count() != 0)
+        {
+            @foreach (var applicationUserChat in Model)
+            {
+                <div class="col-12 selfhelpgroup-item border border-primary rounded py-2 mb-3">
+                    <div class="selfhelpgroup-header">
+                        <h2>@applicationUserChat.Chat.Name</h2>
+                        <i>@applicationUserChat.Chat.CreatedAt.Date.ToString("MM/dd/yyyy")</i>
+                    </div>
+                    <div class="selfhelpgroup-body">
+                        @if (applicationUserChat.Chat.SelfHelpGroup != null)
+                        {
+                            <p>@applicationUserChat.Chat.SelfHelpGroup.Description</p>
+                        }
+                        @if (applicationUserChat.Chat.ChatFrequency != null)
+                        {
+                            @if (applicationUserChat.Chat.ChatFrequency.Status == "pending")
+                            {
+                                <p>Aanvraag is verstuurd, wachten op reactie.</p>
+                            }
+                            else if (applicationUserChat.Chat.ChatFrequency.Status == "accepted")
+                            {
+                                <p>Bekijk chat frequentie:</p>
+                                @Html.ActionLink("Bekijk Frequentie", "Frequency", new { Id=applicationUserChat.Chat.ChatFrequency.Id })
+                            }
+                            else if (applicationUserChat.Chat.ChatFrequency.Status == "declined")
+                            {
+                                <p>Aanvraag geweigert, neem contact op met hulpverlener voor informatie.</p>
+                            }
+                        }
+                        else
+                        {
+                            <form asp-action="RequestFrequency" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" id="chatId" name="chatId" value="@applicationUserChat.Chat.Id">
+                                <input type="hidden" id="clientId" name="clientId" value="@client.ClientId">
+                                <input type="hidden" id="ouderId" name="ouderId" value="@ouder.Id">
+                                <div class="form-group">
+                                    <input type="submit" value="Vraag Aan" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Er zijn geen berichten om aan te vragen voor frequentie.</p>
+        }
+    </div>
+</div>

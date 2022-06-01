@@ -1,0 +1,88 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    margin: none;
+}
+
+/* -----Header----- */
+.logo-img{
+    height: 9%;
+    width: 9%;
+}
+
+li{
+    text-decoration: none;
+}
+
+@media (min-width: 1200px){
+    #navbarSupportedContent li:hover:after{
+        transform: scaleX(1); 
+    }
+    #navbarSupportedContent li::after{
+        display:block;
+        content: '';
+        border-bottom: solid 1px #AB504F; 
+        transform: scaleX(0);  
+        transition: transform 500ms ease-in-out;
+    }
+}
+
+@media (max-width: 1200px){
+    #navbarSupportedContent li:hover:after{
+        transform: scaleX(1); 
+        transform-origin:left center;
+    }
+    #navbarSupportedContent li::after{
+        display:block;
+        content: '';
+        border-bottom: solid 1px #AB504F; 
+        transform: scaleX(0);  
+        transition: transform 500ms ease-in-out;
+        transform-origin:left center;
+    }
+    .loginpartial{
+        display: contents;
+    }
+}
+
+/* -----Footer----- */
+footer{
+    text-align: center;
+    padding: 1%;
+}
+footer a:hover{
+    text-decoration: none;
+}
+
+/* -----Search----- */
+#searchIcon{
+    color:#AB504F; 
+}
+.form-control:focus{
+    border-color:#c86260!important; 
+    box-shadow: 0 0 0 0.2rem rgb(171 80 79 / 25%) !important;
+}
+
+
+::-webkit-scrollbar-thumb{
+    background-color: white !important;
+}
+
+
+/*--------------zoekbalk----------- */
+
+#zoekButton {
+    color: #AB504F;
+    border-color: #AB504F;
+}
+
+#zoekButton:hover {
+    color: white;
+    background-color: #AB504F !important;
+}
+
+#zoekLabel{
+    margin-top: 0.42rem;
+    margin-right: 0.5rem;
+}

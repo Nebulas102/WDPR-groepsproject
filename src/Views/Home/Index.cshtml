@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutHome";
+}
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<link rel="stylesheet" href="~/css/Home.css" />
+
+<div class="container">
+    <div class="bg-img">
+        <form action="" class="imgcontainer">
+            <span class="formtext">Heeft u al vragen? Neem gelijk contact op met een van onze specialisten!</span>
+            <button type="button" aria-label="email adres" class="btn"><a style="color:white !important" href="mailto:zmdh1d@gmail.com">contact@zmdh.nl</a></button>
+            <button type="button" aria-label="telefoonnummer" class="btn"><a style="color:white !important" href="tel:06-12345678">06-12345678</a></button>
+        </form>
+        <div class="imgcontainerleft">
+            <h1 class="text1"><span class="text2">Zorgmaatschappij Den Haag</span></h1>
+        </div>
+    </div>
+</div>
+
+@if (SignInManager.IsSignedIn(User)){
+<div class="container">
+    <div class="row vision p-4">
+        <div class="col-lg-4 col-sm-12">
+            @* <img src="" alt="Picture of our vision"> *@
+            <svg alt="Icoon tekstwolk" aria-hidden="true" focusable="false" data-prefix="far" data-icon="comment" class="svg-inline--fa fa-comment fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 47.6 19.9 91.2 52.9 126.3C38 405.7 7 439.1 6.5 439.5c-6.6 7-8.4 17.2-4.6 26S14.4 480 24 480c61.5 0 110-25.7 139.1-46.3C192 442.8 223.2 448 256 448c141.4 0 256-93.1 256-208S397.4 32 256 32zm0 368c-26.7 0-53.1-4.1-78.4-12.1l-22.7-7.2-19.5 13.8c-14.3 10.1-33.9 21.4-57.5 29 7.3-12.1 14.4-25.7 19.9-40.2l10.6-28.1-20.6-21.8C69.7 314.1 48 282.2 48 240c0-88.2 93.3-160 208-160s208 71.8 208 160-93.3 160-208 160z"></path></svg>
+        </div>
+        <div class="col-lg-1 col-sm-0"></div>
+        <div class="col-lg-7 col-sm-12">
+            <h1>Hoe bereid je je het best voor op dat spannende eerste gesprek? </h1>
+            <p>
+                Om je zo goed mogelijk voor te bereiden op het eerste gesprek is het belangrijk dat je weet waar je het over wil hebben. Het is hierbij handig dat je alvast een beetje onderzoek hebt gedaan naar de beperking die je denkt te hebben. Heb je bijvoorbeeld concentratieproblemen of denk je dat je een afwijkend eetpatroon hebt. Dan kunnen we deze vragen beantwoorden en er verdere uitleg over geven. 	 
+
+                Het is ook slim om van tevoren een introductie mail te sturen waardoor wij ook alvast kunnen kijken naar de symptomen die jij denkt te hebben. 
+            </p>
+        </div>
+    </div>
+</div>
+<div class="graybackground">
+    <div class="container">
+        <div class="row  p-4">
+            <div class="col-lg-12">
+                <h1>
+                    Hoe kan ik chatten met mijn hulpverlener? 
+                </h1>
+                <p>
+                    Zodra jij een aanmelding doet wordt er een code aangemaakt. Met deze code is het mogelijk een chat te starten met de hulpverlener. 
+
+                    Voor kinderen/jongeren die onder behandeling zijn bestaat de mogelijkheid om te chatten met de eigen hulpverlener. De ouder/voogd heeft geen toegang tot deze chat. Indien het kind jonger is dan 16, dan kan de ouder wel zien of het kind chat met de verzorger en zo ja hoe vaak (per dag/week). De ouder heeft dus geen toegang tot de inhoud van de chat. 
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row vision p-4">
+        <div class="col-lg-7 col-sm-12">
+            <h1>Hoe kan ik deelnemen aan een zelfhulpgroep?</h1>
+            <p>
+                Groepen worden gemaakt door hulpverleners. Elke groep heeft een maximale inschrijftijd. Je kan de groepen zoeken basis van onderwerp en leeftijd. Let op dat kinderen onder de 16 jaar toestemming moet krijgen van zijn ouders om een groep deelnemen. Als je ouder dan 16 jaar bent hoeft dat niet. 
+
+                In de groepen zijn controleurs onderdeel van het controleren op de chats. Uiteraard gaan wij in de chat respectvol met elkaar om: de chatregels tref je aan op rechtsboven bij de chat. 
+            </p>
+        </div>
+        <div class="col-lg-1 col-sm-0"></div>
+        <div class="col-lg-4 col-sm-12">
+            @* <img src="" alt="Picture of our vision"> *@
+            <svg alt="Icoon envelop" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>    
+        </div>
+    </div>
+</div>
+}
+else{
+<div class="container">
+    <div class="row vision p-4">
+        <div class="col-lg-2 col-sm-0"></div>
+        <div class="col-lg-8 col-sm-12 text-center">
+            <h1>Hoe meld ik mij aan?</h1>
+            <p>
+                Voor het aanmelden op deze site zal er eerst een intakegesprek plaats vinden. Voor dit intakegesprek heb je een verwijzing nodig van een dokter. Als je jonger bent dan 16 jaar dan moeten je ouders je aan melden. Als je ouder bent dan 15 jaar dan mag je zelf aanmelden. Als de intake positief is beëindigd dan zal de hulpverlener een account aanmaken voor je en zal je het wachtwoord opgestuurd krijgen.
+            </p>
+            <button type="button" aria-label="Aanmelden knop" class="btn signup"><a style="color:white !important;" href="/Identity/Account/Register">Aanmelden</a></button>
+        </div>
+        <div class="col-2 col-sm-0"></div>
+    </div>
+</div>
+<div class="graybackground p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>
+                    Introductie
+                </h1>
+                <p>
+                    U maakt zich zorgen over uw kind en bent daarom op zoek naar hulp.  
+                    Het kan zijn dat uw kind symptomen zoals concentratieproblemen of leerproblemen toont. Dit kan betekenen dat uw kind ADD of ADHD heeft. We zullen eerst onderzoeken of dit het geval is en indien dit het geval is, zullen wij uw kind zo goed mogelijk helpen. Dit doen we door gesprekken te voeren over de problemen die uw kind ervaart. Daarna leren wij uw kind om te gaan met deze problemen worden. 
+                    Naast ADD en ADHD zijn wij ook gespecialiseerd in het helpen van kinderen met eet- en angststoornissen.  
+                    Om uw kind zo goed mogelijk te helpen zullen we alleen de minimaal benodigde gegevens vragen en deze alleen gebruiken wanneer nodig. Verder zullen wij er alles aan doen om zo veilig mogelijk met de persoonlijke gegevens van u en uw kind gegevens om te gaan.  
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row vision p-4">
+        <div class="col-lg-4 col-sm-12">
+            @* <img src="" alt="Picture of our vision"> *@
+            <svg alt="Icoon voor klachten" aria-hidden="true" focusable="false" data-prefix="far" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>
+        </div>
+        <div class="col-lg-1 col-sm-0"></div>
+        <div class="col-lg-7 col-sm-12">
+            <h1>Klachten procedure</h1>
+            <h2>Waar kunt u terecht?</h2>
+            <p>
+                Zmdh ziet uw klachten als mogelijkheid tot verbetering. Om te verzekeren dat uw klachten zo goed mogelijk afgehandeld wordt, heeft Zmdh een klachtenprocedure opgesteld. 
+                Bij onvrede over de behandelingen en/of de hulpverleners kunt u terecht bij ons email contac@zmdh.nl. Dit email account wordt vijf dagen in de week gelezen van negen uur s ’ochtends tot vijf uur s ’avonds. Wij verzoeken u hier zo direct en duidelijk mogelijk uw onvrede te verwoorden zodat wij hier het best op in kunnen spelen. Wij doen ons best om binnen maximaal één werk dag te responderen. 
+            </p>
+            <h2>Klachten rapporteren in een zelfhulpgroep</h2>
+            <p>
+                Bij ongewenst gedrag in de chat rooms door mede cliënten, kunnen de cliënten altijd op een rapporteer knop drukken. Deze knop leidt er toe dat onze moderator er naar gaat kijken en in overleg met een hulpverlener hierop kan reageren. Dit wordt gedaan in de vorm van, tijdelijk geen mogelijkheid meer om te communiceren in de chat of helemaal uit de chatroom verwijdert te worden.  
+            </p>
+        </div>
+    </div>
+</div>
+<div class="graybackground mission p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                <h1>
+                    Onze kernwaarden
+                </h1>
+                <p>
+                    Er zijn drie kernwaarden die gelden in onze praktijk. Dit zijn veiligheid, aandacht en duidelijkheid. Wij willen aandacht geven aan de beperking die een kind ervaart. Door hier aandacht aan te besteden proberen wij duidelijkheid te geven aan ouder en kind over de beperking die het kind ervaart. Daarna proberen we in een veilige en vertrouwde omgeving het kind te helpen omgaan met zijn beperking. 
+                </p>
+            </div>
+            <div class="col-lg-1 col-sm-0"></div>
+            <div class="col-lg-4 col-sm-12">
+                @* <img src="" alt="Picture of our mission"> *@
+                <svg alt="Bullseye icoon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullseye" class="svg-inline--fa fa-bullseye fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm0 432c-101.69 0-184-82.29-184-184 0-101.69 82.29-184 184-184 101.69 0 184 82.29 184 184 0 101.69-82.29 184-184 184zm0-312c-70.69 0-128 57.31-128 128s57.31 128 128 128 128-57.31 128-128-57.31-128-128-128zm0 192c-35.29 0-64-28.71-64-64s28.71-64 64-64 64 28.71 64 64-28.71 64-64 64z"></path></svg>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row vision p-4">
+        <div class="col-lg-4 col-sm-12">
+            @* <img src="" alt="Picture of our vision"> *@
+            <svg alt="Oog icoon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"/></svg>
+        </div>
+        <div class="col-lg-1 col-sm-0"></div>
+        <div class="col-lg-7 col-sm-12">
+            <h1>
+                Onze Visie
+            </h1>
+            <p>
+                Wij proberen uw kind zo goed mogelijk te helpen met de problemen die hij/zji ervaart. Daarnaast is de wereld steeds meer aan het digitaliseren, en wij horen daar ook bij. Dus was een website voor contact steeds meer van belang voor onze zorgmaatschap. 
+                Naast dat wij een op een gesprekken voeren tussen de cliënt en de hulpverlener, laten we de kinderen ook onderling praten met elkaar wanneer dat gewenst is. Hierdoor kunnen ze vertellen aan elkaar vertellen wat zij ervaren en kunnen ze elkaar advies geven over hoe ze ermee omgaan. 
+            </p>
+        </div>
+    </div>
+</div>
+
+    
+}

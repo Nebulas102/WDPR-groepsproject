@@ -1,0 +1,40 @@
+@model ApplicationUserChat
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Verwijderen</h1>
+
+<h3>Weet je zeker dat je het wil verwijderen?</h3>
+<div>
+    <h4>ApplicationUserChat</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationUser.Id)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationUserChatStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationUserChatStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Chat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Chat.Name)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ApplicationUserId" />
+        <input type="hidden" asp-for="ChatId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar de lijst</a>
+    </form>
+</div>

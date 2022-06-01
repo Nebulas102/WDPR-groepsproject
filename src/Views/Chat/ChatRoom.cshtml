@@ -1,0 +1,83 @@
+@using Microsoft.AspNetCore.Identity
+@model ChatViewModel
+@{
+    ViewData["Title"] = "Chatroom";
+    var CurrentUser = ViewData["CurrentUser"] as IdentityUser;
+}
+<link rel="stylesheet" href="~/css/chat.css" />
+<div class="container">
+
+    <!--Report Modal-->
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModalLabel">Raporteer Bericht</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="reportForm" action="javascript:void(0);" method="POST">
+                    <div class="modal-body">
+                        <input id="reportMessageId" type="hidden">
+                        <textarea id="reportInput" class="form-control"
+                            placeholder="Beschrijf reden van raporteren"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
+                        <input id="reportSubmit" class="btn btn-primary" type="submit" value="Raporteer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row rounded-lg overflow-hidden shadow">
+        <!-- Users box-->
+        <div class="col-4 px-0">
+            <div class="bg-white">
+
+                <div class="bg-gray px-4 py-2 bg-light">
+                    <div class="row">
+                        <div id="ShowChats" onclick="changeDecideDisplayChatsOrGroupsToChat()" class="col-md-6">
+                            Chats
+                        </div>
+                        <div id="ShowGroups" onclick="changeDecideDisplayChatsOrGroupsToGroup()" class="col-md-6">
+                            Zelfhulpgroepen
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chats">
+                    <div id="chatsOrGroupsDisplay" class="list-group rounded-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chat Box-->
+        <div class="col-8 px-0">
+            <div id="chatMessageBox" class="px-4 py-5 chat-box bg-white">
+            </div>
+
+            <!-- Typing area -->
+            <form id="chatMessageForm" action="javascript:void(0);" method="POST" class="bg-light">
+                <input type="hidden" id="authorId" value="@CurrentUser.Id">
+                <input type="hidden" id="authorUsername" value="@CurrentUser.UserName">
+                <input type="hidden" id="chatId">
+                <input type="hidden" id="chatName">
+                <input type="hidden" id="determineSendBy" value="false">
+                <div id="displayChatInput" class="input-group">
+                    <input type="text" id="chatMessageInput" placeholder="Type a message"
+                        aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                    <div class="input-group-append">
+                        <input class="btn btn-primary" type="submit" value="Send">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/@@aspnet/signalr@@1.0.0-rc1-final/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

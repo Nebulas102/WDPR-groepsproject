@@ -1,0 +1,30 @@
+@model Client
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Verwijderen</title>
+</head>
+<body>
+
+<h3>Weet je zeker dat je dit wil verwijderen?</h3>
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ClientId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Terug naar de lijst</a>
+    </form>
+</div>
+</body>
+</html>

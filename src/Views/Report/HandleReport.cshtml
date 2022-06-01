@@ -1,0 +1,53 @@
+@using Microsoft.AspNetCore.Identity
+@model ReportViewModel
+
+@{
+    ViewData["Title"] = "Behandel Report";
+    var CurrentUser = ViewData["CurrentUser"] as IdentityUser;
+}
+
+<div class="container">
+    <h1>Behandel Report</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Rapporteerde Bericht</h2>
+            <p>@Model.Report.Message.Content</p>
+            <i>@Model.Report.Message.Author.Email</i>
+            <form asp-action="ChangeApplicationUserChatStatus">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" id="userId" name="userId" value="@Model.ApplicationUserChat.ApplicationUserId">
+                <input type="hidden" id="chatId" name="chatId" value="@Model.ApplicationUserChat.ChatId">
+                @Model.ApplicationUserChat.ApplicationUserChatStatus
+                @if (Model.ApplicationUserChat.ApplicationUserChatStatus == "active")
+                {
+                    <input type="submit" class="btn btn-danger" value="Blokkeer">
+                }
+                else
+                {
+                    <input type="submit" class="btn btn-primary" value="Deblokkeer">
+                }
+            </form>
+        </div>
+        <div class="col-md-4 offset-2">
+            <h2>Report Behandelen</h2>
+            <form asp-action="HandleMessageReport">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Report.Id" />
+                <input type="hidden" asp-for="Report.MessageId" asp-value="@Model.Report.MessageId" />
+                <input type="hidden" asp-for="Report.HandlerId" asp-value="@CurrentUser.Id" />
+                <input type="hidden" asp-for="Report.Content" asp-value="@Model.Report.Content" />
+                <p>@Model.Report.Content</p>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Report.isHandled" /> @Html.DisplayNameFor(model =>
+                        model.Report.isHandled)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Behandel Report" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
