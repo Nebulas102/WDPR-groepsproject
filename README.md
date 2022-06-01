@@ -1,12 +1,3 @@
-# WDPR-Groep3D Combiklas 5-7
-
-## Groepsleden
-```
-Joey Visbeen (20214081)
-Raoul Soerdjbalie (20110219)
-Gijs Arkestijen (20119402)
-Mike Braber (20172702)
-```
-
-## Tools
-- [Trello](https://trello.com/b/Lsh7hMId/wdpr)
+# WDPR-groepsproject
+WDPR groepsproject
+>>>>>>> a5bf14531dcb1dd40620781f04c813d61bfd2bd5
